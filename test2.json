@@ -1,0 +1,56 @@
+{
+	"gender": "female",
+	"name": {
+		"title": "Miss",
+		"first": "Sophie",
+		"last": "Johnston"
+	},
+	"location": {
+		"street": {
+			"number": 6406,
+			"name": "W Gray St"
+		},
+		"city": "Dayton",
+		"state": "Michigan",
+		"country": "United States",
+		"postcode": 28546,
+		"coordinates": {
+			"latitude": "-63.5989",
+			"longitude": "113.6693"
+		},
+		"timezone": {
+			"offset": "+7:00",
+			"description": "Bangkok, Hanoi, Jakarta"
+		}
+	},
+	"email": "sophie.johnston@example.com",
+	"login": {
+		"uuid": "d71dae36-3b70-49be-9bef-82d5d23cbaa5",
+		"username": "yellowlion251",
+		"password": "tosser",
+		"salt": "SBaJS41S",
+		"md5": "66fd39bf11ea5e0c7bdf745b7687ec96",
+		"sha1": "ff2698b9f3cf87da4f43456b6fee3c86aeb3cf6d",
+		"sha256": "2f159744c45fa8ccc951c08471d1e40ad45ed75278e0e0b0b1fb0ce5ff5ca188"
+	},
+	"dob": {
+		"date": "1990-07-10T01:41:21.188Z",
+		"age": 32
+	},
+	"registered": {
+		"date": "2008-02-05T11:43:47.290Z",
+		"age": 14
+	},
+	"phone": "(127)-766-3895",
+	"cell": "(264)-709-8314",
+	"id": {
+		"name": "SSN",
+		"value": "273-41-5140"
+	},
+	"picture": {
+		"large": "https://randomuser.me/api/portraits/women/81.jpg",
+		"medium": "https://randomuser.me/api/portraits/med/women/81.jpg",
+		"thumbnail": "https://randomuser.me/api/portraits/thumb/women/81.jpg"
+	},
+	"nat": "US"
+}
