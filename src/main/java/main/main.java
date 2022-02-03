@@ -36,16 +36,44 @@ public class main {
 		    Reader reader = Files.newBufferedReader(Paths.get("test.json"));
 
 		    Data data = gson.fromJson(reader,Data.class);
-
+		    
 		    // print user object
-		    System.out.println(data);
+		    //System.out.println(data);
 
-		    for (int i=0; i<10; i++) {
+		    //Tester to print first last and prefix of names for each student in list.
+		    for (int i=0; i<data.getResults().length; i++) {
 		    	String first = data.getResults()[i].getName().getFirst();
 			    String last = data.getResults()[i].getName().getLast();
 			    String title = data.getResults()[i].getName().getTitle();
 			    System.out.println(title + " " + first + " " + last);
 		    }
+		    
+		    
+		    
+		    //Creates Temporary Array to load into Student List
+		    Student[] tempStudentArray = data.getResults();
+		    
+		    //Creates temporary list to hold students
+		    ArrayList<Student> tempStudentList = new ArrayList<Student>(Arrays.asList(tempStudentArray));
+		    
+		    //New Student creation
+		    Student newStudent = new Student();
+		    newStudent.setGender("male");
+		    
+		    //Adds new Student to List
+		    tempStudentList.add(newStudent);
+		    
+		    //Change student list to array
+		    Student[] arr = new Student[tempStudentList.size()];
+	        arr = tempStudentList.toArray(arr);
+	        
+	        // changes student array of data to new student array
+	        data.setResults(arr);
+		    
+	        // All students back to JSON
+		    String jsonString = gson.toJson(data);
+		    System.out.println(jsonString);
+		    
 		    // close reader
 		    reader.close();
 
