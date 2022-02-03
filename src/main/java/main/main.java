@@ -1,6 +1,5 @@
 package main;
 
-import main.Student;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -16,6 +15,8 @@ import java.lang.reflect.Type;
 
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
+
+import studentObject.Data;
 
 public class main {
 	public static void main(String[] args) {

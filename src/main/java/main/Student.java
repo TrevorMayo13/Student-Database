@@ -1,5 +1,13 @@
 package main;
 
+import studentObject.ID;
+import studentObject.Location;
+import studentObject.Login;
+import studentObject.Name;
+import studentObject.Picture;
+import studentObject.Registered;
+import studentObject.dateOfBirth;
+
 public class Student {
 	private String gender;
 	private Name name;
