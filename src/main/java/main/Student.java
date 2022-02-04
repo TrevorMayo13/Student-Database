@@ -2,45 +2,38 @@ package main;
 
 public class Student {
 
-    // Setup All Variables (Can even be public for easier access)
-    private String firstName;
-    private String lastName;
-    private String street;
-    private String city;
-    private String state;
-    private String country;
-    private long postCode;
-    private String dob;
-    private long age;
-    private String gender;
-    // ...etc
-    
-    // -----------------------------------------------------------------
+	// Setup All Variables (Can even be public for easier access)
+	private String firstName;
+	private String lastName;
+	private String street;
+	private String city;
+	private String state;
+	private String country;
+	private long postCode;
+	private String dob;
+	private long age;
+	private String gender;
+	
+	public Student(String first, String last, String street, String city, String state, String country, long postCode,
+			String dob, long age, String gender) {
 
-    // Constructor
-    public Student(String first, String last, String street, String city, String state, String country,
-            long postCode, String dob, long age, String gender) {
-        
-        this.firstName = first;
-        this.lastName = last;
-        this.street = street;
-        this.city = city;
-        this.state = state;
-        this.country = country;
-        this.postCode = postCode;
-        this.dob = dob;
-        this.age = age;
-        this.gender = gender;
-    }
-    
-    // -----------------------------------------------------------------
-    
-    // Getters
-    public String getFirstName() {
-        return this.firstName;
-    }
-    
-    @Override
+		this.firstName = first;
+		this.lastName = last;
+		this.street = street;
+		this.city = city;
+		this.state = state;
+		this.country = country;
+		this.postCode = postCode;
+		this.dob = dob;
+		this.age = age;
+		this.gender = gender;
+	}
+
+	public String getFirstName() {
+		return this.firstName;
+	}
+
+	@Override
 	public String toString() {
 		return "Student [firstName=" + firstName + ", lastName=" + lastName + ", street=" + street + ", city=" + city
 				+ ", state=" + state + ", country=" + country + ", postCode=" + postCode + ", dob=" + dob + ", age="
@@ -116,18 +109,15 @@ public class Student {
 	}
 
 	public String getLastName() {
-        return this.lastName;
-    }
+		return this.lastName;
+	}
 
-    // -----------------------------------------------------------------
-    
-    // Setters
-    public void setFirstName(String name) {
-        this.firstName = name;
-    }
-    
-    public void setName(String name) {
-        this.lastName = name;
-    }
-    
+	public void setFirstName(String name) {
+		this.firstName = name;
+	}
+
+	public void setName(String name) {
+		this.lastName = name;
+	}
+
 }
