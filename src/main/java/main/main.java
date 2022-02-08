@@ -31,6 +31,8 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 public class main extends View {
+	private static ArrayList<Student> studentList;
+	
 	private static String[] args;
 
 //	public void start(Stage primaryStage) {
@@ -60,6 +62,16 @@ public class main extends View {
 	public static void print(String n) {
 		System.out.println("Student Name is " + n);
 	}
+	
+	public static void addStudent(Student student) {
+		studentList.add(student);
+	}
+	
+	public static void printList() {
+		for (int j = 0; j < studentList.size(); j++) {
+			System.out.println(studentList.get(j));
+		}
+	}
 
 	public static void readIn() throws IOException, ParseException {
 		URL url = new URL("https://randomuser.me/api/?results=10&nat=us");
@@ -88,7 +100,7 @@ public class main extends View {
 		// get an array from the JSON object
 		JSONArray results = (JSONArray) jsonObject.get("results");
 
-		ArrayList<Student> studentList = new ArrayList<Student>();
+		studentList = new ArrayList<Student>();
 
 		Iterator i = results.iterator();
 		while (i.hasNext()) {
@@ -111,7 +123,7 @@ public class main extends View {
 			String city = (String) locationObject.get("city");
 			String state = (String) locationObject.get("state");
 			String country = (String) locationObject.get("country");
-			long postCode = (long) locationObject.get("postcode");
+			String postCode = String.valueOf(locationObject.get("postcode"));
 			JSONObject dobObject = (JSONObject) info.get("dob");
 			String dob = (String) dobObject.get("date");
 			long age = (long) dobObject.get("age");
@@ -129,10 +141,7 @@ public class main extends View {
 //            Student x = new Student(firstName, lastName, );
 			studentList.add(new Student(firstName, lastName, street, city, state, country, postCode, dob, age, gender));
 			System.out.println(firstName);
-
-		}
-		for (int j = 0; j < studentList.size(); j++) {
-			System.out.println(studentList.get(j));
+			printList();
 		}
 	}
 }

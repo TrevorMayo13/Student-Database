@@ -1,5 +1,7 @@
 package main;
 
+import java.util.Calendar;
+
 public class Student {
 
 	// Setup All Variables (Can even be public for easier access)
@@ -9,12 +11,12 @@ public class Student {
 	private String city;
 	private String state;
 	private String country;
-	private long postCode;
+	private String postCode;
 	private String dob;
 	private long age;
 	private String gender;
 	
-	public Student(String first, String last, String street, String city, String state, String country, long postCode,
+	public Student(String first, String last, String street, String city, String state, String country, String postCode,
 			String dob, long age, String gender) {
 
 		this.firstName = first;
@@ -28,6 +30,7 @@ public class Student {
 		this.age = age;
 		this.gender = gender;
 	}
+	
 
 	public String getFirstName() {
 		return this.firstName;
@@ -72,11 +75,11 @@ public class Student {
 		this.country = country;
 	}
 
-	public long getPostCode() {
+	public String getPostCode() {
 		return postCode;
 	}
 
-	public void setPostCode(long postCode) {
+	public void setPostCode(String postCode) {
 		this.postCode = postCode;
 	}
 

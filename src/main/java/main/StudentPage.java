@@ -3,6 +3,15 @@ package main;
 import javafx.event.*;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.Calendar;
+import java.util.Locale;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -22,6 +31,8 @@ public class StudentPage extends View {
 	static TextField firstNameInput, lastNameInput, streetInput, cityInput, stateInput, countryInput, postCodeInput,
 			dobInput, genderInput;
 	static Pane spring;
+	static Button createButton;
+	static Student newStudent;
 
 	public static void display() {
 		window = View.getPrimaryStage();
@@ -39,9 +50,20 @@ public class StudentPage extends View {
 		GridPane.setConstraints(backButton, 2, 5);
 		backButton.setOnAction(e -> View.setHome());
 
-		grid.getChildren().addAll(backButton, firstNameLabel, lastNameLabel, streetLabel, cityLabel, stateLabel, countryLabel,
-				postCodeLabel, dobLabel, genderLabel, firstNameInput, lastNameInput, streetInput, cityInput, stateInput,
-				countryInput, postCodeInput, dobInput, genderInput);
+		Button createButton = new Button("Create Student");
+		GridPane.setConstraints(createButton, 3, 5);
+		createButton.setOnAction(e -> {
+			if (isValidFormat("MM/dd/yyyy", dobInput.getText(), Locale.ENGLISH)) {
+				System.out.println("true");
+				createStudent();
+			}
+			else
+				System.out.println("Invalid Date Format");
+		});
+
+		grid.getChildren().addAll(backButton, createButton, firstNameLabel, lastNameLabel, streetLabel, cityLabel,
+				stateLabel, countryLabel, postCodeLabel, dobLabel, genderLabel, firstNameInput, lastNameInput,
+				streetInput, cityInput, stateInput, countryInput, postCodeInput, dobInput, genderInput);
 
 //		BorderPane borderPane = new BorderPane();
 //		borderPane.setCenter(layout1);
@@ -49,6 +71,61 @@ public class StudentPage extends View {
 
 		Scene newStudentScene = new Scene(grid, 300, 200);
 		window.setScene(newStudentScene);
+	}
+	
+	public static boolean isValidFormat(String format, String value, Locale locale) {
+	    LocalDateTime ldt = null;
+	    DateTimeFormatter fomatter = DateTimeFormatter.ofPattern(format, locale);
+
+	    try {
+	        ldt = LocalDateTime.parse(value, fomatter);
+	        String result = ldt.format(fomatter);
+	        return result.equals(value);
+	    } catch (DateTimeParseException e) {
+	        try {
+	            LocalDate ld = LocalDate.parse(value, fomatter);
+	            String result = ld.format(fomatter);
+	            return result.equals(value);
+	        } catch (DateTimeParseException exp) {
+	            try {
+	                LocalTime lt = LocalTime.parse(value, fomatter);
+	                String result = lt.format(fomatter);
+	                return result.equals(value);
+	            } catch (DateTimeParseException e2) {
+	                // Debugging purposes
+	                //e2.printStackTrace();
+	            }
+	        }
+	    }
+
+	    return false;
+	}
+
+	private static void createStudent() {
+		//Split dob to myear month day
+		String[] dobArray = dobInput.getText().split("/");
+		String age = getAge(Integer.parseInt(dobArray[2]),Integer.parseInt(dobArray[1]), Integer.parseInt(dobArray[0]));
+		newStudent = new Student(firstNameInput.getText(), lastNameInput.getText(), streetInput.getText(), cityInput.getText(), stateInput.getText(), countryInput.getText(), postCodeInput.getText(),
+				dobInput.getText(), Long.valueOf(age), genderInput.getText());
+		main.addStudent(newStudent);
+		main.printList();
+	}
+	private static String getAge(int year, int month, int day){
+	    Calendar dob = Calendar.getInstance();
+	    Calendar today = Calendar.getInstance();
+
+	    dob.set(year, month, day); 
+
+	    int age = today.get(Calendar.YEAR) - dob.get(Calendar.YEAR);
+
+	    if (today.get(Calendar.DAY_OF_YEAR) < dob.get(Calendar.DAY_OF_YEAR)){
+	        age--; 
+	    }
+
+	    Integer ageInt = (Integer) age;
+	    String ageS = ageInt.toString();
+
+	    return ageS;  
 	}
 
 	static void initLabels() {
@@ -81,6 +158,7 @@ public class StudentPage extends View {
 		countryInput = new TextField();
 		postCodeInput = new TextField();
 		dobInput = new TextField();
+		dobInput.setPromptText("ex. 08/12/1954");
 		genderInput = new TextField();
 		GridPane.setConstraints(firstNameInput, 1, 0);
 		GridPane.setConstraints(lastNameInput, 1, 1);
