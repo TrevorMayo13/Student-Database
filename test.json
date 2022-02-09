@@ -598,5 +598,17 @@
     "dob": "1953-05-07T13:01:02.576Z",
     "age": 69,
     "gender": "male"
+  },
+  {
+    "firstName": "Trevor",
+    "lastName": "Mayo",
+    "street": "12 Safari Dr",
+    "city": "Brunswick",
+    "state": "Maine",
+    "country": "USA",
+    "postCode": "04011",
+    "dob": "08/13/1997",
+    "age": 24,
+    "gender": "male"
   }
 ]

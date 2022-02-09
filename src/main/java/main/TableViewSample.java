@@ -15,6 +15,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -52,6 +53,7 @@ public class TableViewSample extends View {
 		FilteredList<Student> flPerson = new FilteredList(data, p -> true);// Pass the data to a filtered list
 		table.setItems(flPerson);// Set the table's items using the filtered list
 		table.getColumns().addAll(firstNameCol, lastNameCol);
+		
 
 		// Adding ChoiceBox and TextField here!
 		ChoiceBox<String> choiceBox = new ChoiceBox();
@@ -106,6 +108,14 @@ public class TableViewSample extends View {
 
 		window.setScene(scene);
 		window.show();
+	}
+	
+	public void clickItem(MouseEvent event)
+	{
+	    if (event.getClickCount() == 2) //Checking double click
+	    {
+	        System.out.println("hi");
+	    }
 	}
 
 
