@@ -2,6 +2,9 @@ package main;
 
 import javafx.event.*;
 import javafx.geometry.Insets;
+
+import java.io.IOException;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -16,7 +19,7 @@ import javafx.stage.Stage;
 
 public class View extends Application {
 
-	Button searchButton, newStudentButton, homeButton, newhomeButton, confirmButton, closeButton;
+	Button searchButton, newStudentButton, homeButton, newhomeButton, confirmButton, closeButton, randomStudentsButton;
 	static Stage window;
 	static Scene homeScene;
 	Scene newStudentScene;
@@ -31,7 +34,7 @@ public class View extends Application {
 		Label label2 = new Label("Would you like to close program?");
 		searchButton = new Button("Search for Student");
 		searchButton.setOnAction(e -> {
-			window.setScene(searchScene);
+			TableViewSample.display();
 		});
 		newStudentButton = new Button("Create New Student");
 		newStudentButton.setOnAction(e -> {
@@ -55,15 +58,25 @@ public class View extends Application {
 		window.setOnCloseRequest(e -> {
 			// take over event handler
 			e.consume();
+			main.closeList();
 			closeProgram();
+		});
+		randomStudentsButton = new Button("Generate Random Students");
+		randomStudentsButton.setOnAction(e -> {
+			try {
+				main.generateRandomStudents();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		});
 
 		// Home screen
 		VBox layout1 = new VBox();
 		layout1.getChildren().addAll(label1, searchButton, newStudentButton);
-		
+
 		HBox topBox = new HBox();
-		topBox.getChildren().addAll(confirmButton, closeButton);
+		topBox.getChildren().addAll(confirmButton, closeButton, randomStudentsButton);
 
 		BorderPane borderPane = new BorderPane();
 		borderPane.setCenter(layout1);
@@ -93,12 +106,13 @@ public class View extends Application {
 		if (answer)
 			window.close();
 	}
+
 	public static void setHome() {
 		window.setScene(homeScene);
 	}
-	
+
 	public static Stage getPrimaryStage() {
-	    return window;
+		return window;
 	}
 
 //	@Override
@@ -110,7 +124,7 @@ public class View extends Application {
 //			System.out.println("new student");
 //		}
 //	}
-	
+
 	public View() {
 
 	}
