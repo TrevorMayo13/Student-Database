@@ -34,27 +34,12 @@ public class View extends Application {
 		Label label2 = new Label("Would you like to close program?");
 		searchButton = new Button("Search for Student");
 		searchButton.setOnAction(e -> {
-			TableViewSample.display();
+			SearchStudentPage.display();
 		});
 		newStudentButton = new Button("Create New Student");
 		newStudentButton.setOnAction(e -> {
-			StudentPage.display();
+			CreateStudentPage.display();
 		});
-		homeButton = new Button("Return to home page");
-		homeButton.setOnAction(e -> {
-			window.setScene(homeScene);
-		});
-		newhomeButton = new Button("Return to home page");
-		newhomeButton.setOnAction(e -> {
-			window.setScene(homeScene);
-		});
-		confirmButton = new Button("Confirm Button");
-		confirmButton.setOnAction(e -> {
-			boolean result = ConfirmBox.display("Confirm Box", "Hi there");
-			System.out.println(result);
-		});
-		closeButton = new Button("Close program");
-		closeButton.setOnAction(e -> closeProgram());
 		window.setOnCloseRequest(e -> {
 			// take over event handler
 			e.consume();
@@ -76,7 +61,7 @@ public class View extends Application {
 		layout1.getChildren().addAll(label1, searchButton, newStudentButton);
 
 		HBox topBox = new HBox();
-		topBox.getChildren().addAll(confirmButton, closeButton, randomStudentsButton);
+		topBox.getChildren().addAll(randomStudentsButton);
 
 		BorderPane borderPane = new BorderPane();
 		borderPane.setCenter(layout1);
@@ -85,15 +70,6 @@ public class View extends Application {
 //		homeScene = new Scene(grid, 300, 200);
 		homeScene = new Scene(borderPane, 300, 200);
 
-		// Search screen
-		StackPane layoutSearch = new StackPane();
-		layoutSearch.getChildren().add(newhomeButton);
-		searchScene = new Scene(layoutSearch, 200, 200);
-
-		// New Student screen
-		StackPane layoutNewStudent = new StackPane();
-		layoutNewStudent.getChildren().add(homeButton);
-		newStudentScene = new Scene(layoutNewStudent, 200, 200);
 
 		window.setScene(homeScene);
 		window.show();

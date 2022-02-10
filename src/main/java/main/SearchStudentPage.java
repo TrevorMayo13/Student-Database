@@ -21,10 +21,11 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-public class TableViewSample extends View {
+public class SearchStudentPage extends View {
 
 	private static TableView<Student> table = new TableView<Student>();
 	private static ObservableList<Student> data = FXCollections.observableList(main.getStudentList());
+	static Scene scene2;
 
 	public static void display() {
 		Scene scene = new Scene(new Group());
@@ -53,7 +54,13 @@ public class TableViewSample extends View {
 		FilteredList<Student> flPerson = new FilteredList(data, p -> true);// Pass the data to a filtered list
 		table.setItems(flPerson);// Set the table's items using the filtered list
 		table.getColumns().addAll(firstNameCol, lastNameCol);
-		
+
+		table.setOnMousePressed(e -> {
+			if (e.isPrimaryButtonDown() && e.getClickCount() == 2) {
+				System.out.println(table.getSelectionModel().getSelectedItem());
+				StudentPage.display(table.getSelectionModel().getSelectedItem());
+			}
+		});
 
 		// Adding ChoiceBox and TextField here!
 		ChoiceBox<String> choiceBox = new ChoiceBox();
@@ -107,16 +114,24 @@ public class TableViewSample extends View {
 		((Group) scene.getRoot()).getChildren().addAll(vbox);
 
 		window.setScene(scene);
+		setScene(scene);
 		window.show();
+		
 	}
 	
-	public void clickItem(MouseEvent event)
-	{
-	    if (event.getClickCount() == 2) //Checking double click
-	    {
-	        System.out.println("hi");
-	    }
+	public static void setScene(Scene tempScene) {
+		scene2 = tempScene;
+	}
+	
+	public static Scene getScene() {
+		return scene2;
 	}
 
+	public void clickItem(MouseEvent event) {
+		if (event.getClickCount() == 2) // Checking double click
+		{
+			System.out.println("hi");
+		}
+	}
 
 }
